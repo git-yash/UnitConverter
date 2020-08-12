@@ -7,32 +7,23 @@ import java.awt.event.KeyListener;
 
 public class UIBuilder {
     private final JPanel panel = new JPanel();
-    Time time = new Time();
-    Temperature temperature = new Temperature();
-
-    JComboBox<String> timeUnits = new JComboBox<>(time.units);
-    JComboBox<String> timeUnits2 = new JComboBox<>(time.units);
-
-    JComboBox<String> lengthUnits = new JComboBox<>(Length.units);
-    JComboBox<String> lengthUnits2 = new JComboBox<>(Length.units);
-
-    JComboBox<String> temperatureUnits = new JComboBox<>(temperature.units);
-    JComboBox<String> temperatureUnits2 = new JComboBox<>(temperature.units);
+    JComboBox<String> unit = new JComboBox<>(Length.units);
+    JComboBox<String> unit2 = new JComboBox<>(Length.units);
 
     JTextField secondUnit = new JTextField();
 
     private String getFirstSelectedItem() {
         String firstSelectedItem = null;
-        if (panel.isAncestorOf(lengthUnits)) {
-            firstSelectedItem = String.valueOf(lengthUnits.getSelectedItem());
+        if (panel.isAncestorOf(unit)) {
+            firstSelectedItem = String.valueOf(unit.getSelectedItem());
         }
         return firstSelectedItem;
     }
 
     private String getSecondSelectedItem() {
         String secondSelectedItem = null;
-        if (panel.isAncestorOf(lengthUnits2)) {
-            secondSelectedItem = String.valueOf(lengthUnits2.getSelectedItem());
+        if (panel.isAncestorOf(unit2)) {
+            secondSelectedItem = String.valueOf(unit2.getSelectedItem());
         }
         return secondSelectedItem;
     }
@@ -64,30 +55,9 @@ public class UIBuilder {
 
         panel.add(firstUnit);
         panel.add(secondUnit);
-        panel.add(lengthUnits);
-        panel.add(lengthUnits2);
+        panel.add(unit);
+        panel.add(unit2);
 
-//        typeOfConversionComboBox.addActionListener(e -> {
-//            Object selectedItem = typeOfConversionComboBox.getSelectedItem();
-//            if(selectedItem == "Time"){
-//                removeLengthUnitComboBoxes();
-//                removeTemperatureUnitComboBoxes();
-//                panel.add(timeUnits);
-//                panel.add(timeUnits2);
-//            }
-//            else if(selectedItem == "Temperature"){
-//                removeLengthUnitComboBoxes();
-//                removeTimeUnitComboBoxes();
-//                panel.add(temperatureUnits);
-//                panel.add(temperatureUnits2);
-//            }
-//            else{
-//                removeTimeUnitComboBoxes();
-//                removeTemperatureUnitComboBoxes();
-//                panel.add(lengthUnits);
-//                panel.add(lengthUnits2);
-//            }
-//        });
     }
 
     private JTextField createFirstTextField() {
@@ -110,21 +80,6 @@ public class UIBuilder {
             }
         });
         return textField;
-    }
-
-    private void removeLengthUnitComboBoxes() {
-        panel.remove(lengthUnits);
-        panel.remove(lengthUnits2);
-    }
-
-    private void removeTimeUnitComboBoxes() {
-        panel.remove(timeUnits);
-        panel.remove(timeUnits2);
-    }
-
-    private void removeTemperatureUnitComboBoxes() {
-        panel.remove(temperatureUnits);
-        panel.remove(temperatureUnits2);
     }
 
 }

@@ -17,6 +17,7 @@ public enum Length {
 
     public static double convertUnit(double firstNumber, String firstUnit, String secondUnit) {
         double secondNumber;
+
         if (firstUnit.equals(INCH.getUnit()) && secondUnit.equals(INCH.getUnit())) {
             secondNumber = firstNumber;
         } else if (firstUnit.equals(FOOT.getUnit()) && secondUnit.equals(FOOT.getUnit())) {
@@ -36,6 +37,7 @@ public enum Length {
         } else {
             secondNumber = firstNumber * 5280;
         }
+
         return secondNumber;
     }
 }
