@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -46,11 +44,10 @@ public class UIBuilder {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(typeOfConversionComboBox);
         frame.add(panel);
-        formula.setText("Formula : Multiply value by 1");
         frame.add(formula);
 
-        unit.addActionListener(e -> addUnitComboBoxActionListener(firstUnit, unit));
-        unit2.addActionListener(e -> addUnitComboBoxActionListener(firstUnit, unit2));
+        unit.addActionListener(e -> calculateValue(firstUnit));
+        unit2.addActionListener(e -> calculateValue(firstUnit));
 
         panel.add(firstUnit);
         panel.add(secondUnit);
@@ -64,7 +61,7 @@ public class UIBuilder {
     private final JComboBox<String> unit2 = new JComboBox<>(Length.units);
     private final String[] typeOfConversionList = {"Length", "Time", "Temperature"};
     private final JComboBox<String> typeOfConversionComboBox = new JComboBox<>(typeOfConversionList);
-    JLabel formula = new JLabel();
+    private final JLabel formula = new JLabel("Formula : Multiply value by 1", SwingConstants.CENTER);
 
     private String selectedTypeOfConversion = "Length";
 
@@ -104,7 +101,7 @@ public class UIBuilder {
         selectedTypeOfConversion = type;
     }
 
-    private void calculateValue(JTextField textField){
+    private void calculateValue(JTextField textField) {
         String secondNumber;
         try {
             String strFormula;
@@ -128,7 +125,4 @@ public class UIBuilder {
         }
     }
 
-    private void addUnitComboBoxActionListener(JTextField firstTextField, JComboBox<String> unit){
-        unit.addActionListener(e -> calculateValue(firstTextField));
-    }
 }
